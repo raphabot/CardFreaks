@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
+var PlayerSchema = require('./player').schema;
 
 var TeamSchema = new mongoose.Schema({
   name: { type: String, "default": "A team"},
-  //players: [Player],
+  players: { type: [PlayerSchema] , "default": [] },
   updated_at: { type: Date, "default": Date.now },
 });
 

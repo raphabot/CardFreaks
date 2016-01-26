@@ -5,4 +5,4 @@ var PlayerSchema = new mongoose.Schema({
   updated_at: { type: Date, "default": Date.now },
 });
 
-module.exports = mongoose.model('Player', TodoSchema);
+module.exports = mongoose.model('Player', PlayerSchema);

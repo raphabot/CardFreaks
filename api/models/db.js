@@ -42,3 +42,4 @@ process.on('SIGTERM', function() {
 //Import models to app
 require('./game');
 require('./team');
+require('./player');
