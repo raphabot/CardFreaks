@@ -5,22 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./app_server/routes/index');
-var users = require('./app_server/routes/users');
-//var routesApi = require('./api/index');
+//MongoDB connection
+require('./api/models/db');
 
-var mongoose = require('mongoose');
+var routes = require('./app_server/routes/index');
+var routesApi = require('./api/routes/index');
 
 var app = express();
-
-//MongoDB connection
-mongoose.connect('mongodb://localhost/todoApp', function(err) {
-    if(err) {
-        console.log('connection error', err);
-    } else {
-        console.log('connection successful');
-    }
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
@@ -35,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-//app.use('/api', routesApi);
+app.use('/api', routesApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
